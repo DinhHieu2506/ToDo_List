@@ -1,0 +1,27 @@
+import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setFilter } from '../features/todos/todosSlice'
+import { Segmented } from 'antd'
+
+const FilterButtons = () => {
+  const dispatch = useDispatch()
+  const filter = useSelector(state => state.todos.filter)
+
+  return (
+    <div className="bg-white p-4 rounded-lg shadow mb-6">
+      <h3 className="mb-3 font-medium text-gray-800">Filter Tasks</h3>
+      <Segmented
+        block
+        options={[
+          { label: 'All', value: 'all' },
+          { label: 'Pending', value: 'pending' },
+          { label: 'Completed', value: 'completed' },
+        ]}
+        value={filter}
+        onChange={val => dispatch(setFilter(val))}
+      />
+    </div>
+  )
+}
+
+export default FilterButtons
