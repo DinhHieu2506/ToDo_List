@@ -1,7 +1,16 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit'
 
+const loadTasks = () => {
+  try {
+    const data = localStorage.getItem('tasks')
+    return data ? JSON.parse(data) : []
+  } catch {
+    return []
+  }
+}
+
 const initialState = {
-  tasks: [],
+  tasks: loadTasks(),
   filter: 'all'
 }
 
@@ -12,6 +21,7 @@ const todosSlice = createSlice({
     addTask: {
       reducer(state, action) {
         state.tasks.push(action.payload)
+        localStorage.setItem('tasks', JSON.stringify(state.tasks))
       },
       prepare({ title, description }) {
         return {
@@ -27,11 +37,14 @@ const todosSlice = createSlice({
     },
     toggleTask(state, action) {
       const task = state.tasks.find(t => t.id === action.payload)
-      if (task) task.completed = !task.completed
-      
+      if (task) {
+        task.completed = !task.completed
+        localStorage.setItem('tasks', JSON.stringify(state.tasks))
+      }
     },
     deleteTask(state, action) {
       state.tasks = state.tasks.filter(t => t.id !== action.payload)
+      localStorage.setItem('tasks', JSON.stringify(state.tasks))
     },
     setFilter(state, action) {
       state.filter = action.payload
