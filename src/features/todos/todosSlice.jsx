@@ -28,6 +28,7 @@ const todosSlice = createSlice({
     toggleTask(state, action) {
       const task = state.tasks.find(t => t.id === action.payload)
       if (task) task.completed = !task.completed
+      
     },
     deleteTask(state, action) {
       state.tasks = state.tasks.filter(t => t.id !== action.payload)

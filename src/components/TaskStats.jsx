@@ -10,7 +10,7 @@ const TaskStats = () => {
 
   return (
     <div className="bg-white p-4 rounded-lg shadow mb-6">
-      <div className="mb-3 font-medium text-gray-800">Task Statistics </div>
+      <div className="mb-3 font-bold text-gray-800">Task Statistics </div>
       <div className="grid grid-cols-3 gap-4 text-center">
         <div>
           <div className="text-2xl font-bold text-blue-600">{total}</div>

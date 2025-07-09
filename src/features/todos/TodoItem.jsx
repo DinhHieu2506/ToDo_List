@@ -1,14 +1,36 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { toggleTask, deleteTask } from './todosSlice'
-import { Card, Button, Tag, Space } from 'antd'
+import { Card, Button, Tag, Space, Modal } from 'antd'
 import { CheckOutlined, DeleteOutlined } from '@ant-design/icons'
+import { message } from 'antd'
 
 const TodoItem = ({ task }) => {
   const dispatch = useDispatch()
 
+  const handleToggle = () => {
+  const nextStatus = !task.completed ? 'completed' : 'pending';
+  dispatch(toggleTask(task.id));
+  message.success(`Task "${task.title}" marked as ${nextStatus}.`);
+};
+
+
+const handleDelete = () => {
+  Modal.confirm({
+    title: 'Do you want to delete this task?',
+    content: `"${task.title}" will be permanently removed.`,
+    okText: 'Yes',
+    okType: 'danger',
+    cancelText: 'Cancel',
+    onOk() {
+      dispatch(deleteTask(task.id))
+      message.warning(`Task "${task.title}" has been deleted.`)
+    },
+  })
+}
+
   return (
-    
+    <div >
     <Card
       size="small"
       title={
@@ -36,17 +58,18 @@ const TodoItem = ({ task }) => {
             
           <Button
             type={task.completed ? 'default' : 'primary'}
-            onClick={() => dispatch(toggleTask(task.id))}
+            onClick={handleToggle}
           >
           
             <CheckOutlined />
           </Button>
-          <Button danger onClick={() => dispatch(deleteTask(task.id))}>
+          <Button danger onClick={handleDelete}>
             <DeleteOutlined />
           </Button>
         </Space>
       </div>
     </Card>
+    </div>
   )
 }
 

@@ -9,7 +9,7 @@ const FilterButtons = () => {
 
   return (
     <div className="bg-white p-4 rounded-lg shadow mb-6">
-      <h3 className="mb-3 font-medium text-gray-800">Filter Tasks</h3>
+      <div className="mb-3 font-bold text-gray-800">Filter Tasks</div>
       <Segmented
         block
         options={[

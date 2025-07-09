@@ -20,7 +20,7 @@ const TodoList = () => {
   }
 
   return (
-    <div className="space-y-4">
+    <div className=" flex flex-col space-y-4">
       {filteredTasks.map(task => <TodoItem key={task.id} task={task} />)}
     </div>
   )

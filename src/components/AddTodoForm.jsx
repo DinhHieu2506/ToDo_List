@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addTask } from '../features/todos/todosSlice'
-import { Form, Input, Button } from 'antd'
+import { Form, Input, Button, message } from 'antd'
 
 const { TextArea } = Input
 
@@ -15,6 +15,7 @@ const AddTodoForm = () => {
     dispatch(addTask({ title, description }))
     setTitle('')
     setDescription('')
+    message.success('Task added successfully!')
   }
 
   return (
