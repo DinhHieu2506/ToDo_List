@@ -5,7 +5,7 @@
 - Add a new task (title, description).
 - Mark a task as completed.
 - Delete a task.
-- Filter tasks by status (All / Completed / Pendin.
+- Filter tasks by status (All / Completed / Pendin).
 
 ###Technical Requirements:
 - Use React.js with functional components.
