@@ -10,13 +10,21 @@ const AddTodoForm = () => {
   const [title, setTitle] = useState('')
   const [description, setDescription] = useState('')
 
-  const handleSubmit = () => {
-    if (!title.trim()) return
-    dispatch(addTask({ title, description }))
-    setTitle('')
-    setDescription('')
-    message.success('Task added successfully!')
+const handleSubmit = () => {
+  const trimmedTitle = title.trim()
+  const trimmedDesc = description.trim()
+
+  if (!trimmedTitle) {
+    message.warning('Please enter a task title')
+    return
   }
+
+  dispatch(addTask({ title: trimmedTitle, description: trimmedDesc }))
+  setTitle('')
+  setDescription('')
+  message.success('Task added successfully!')
+}
+
 
   return (
     <div className="bg-white p-6 rounded-lg shadow mb-6">
