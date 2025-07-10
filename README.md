@@ -2,10 +2,10 @@
 
 ##Description:
 -You will build a To-Do List application using React.js + Redux Toolkit. The app should allow users to:
--Add a new task (title, description)
--Mark a task as completed
--Delete a task
--Filter tasks by status (All / Completed / Pending)
+-Add a new task (title, description).
+-Mark a task as completed.
+-Delete a task.
+-Filter tasks by status (All / Completed / Pendin.
 
 ###Technical Requirements:
 -Use React.js with functional components.
