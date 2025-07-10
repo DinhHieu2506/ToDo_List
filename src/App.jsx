@@ -16,9 +16,8 @@ function App() {
       </header>
    
       <AddTodoForm/>
-<TaskStats/>
+      <TaskStats/>
       <FilterButtons/>
-      
       <TodoList/>
       
       
