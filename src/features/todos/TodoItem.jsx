@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { toggleTask, deleteTask } from "./TodosSlice.jsx";
+import { toggleTask, deleteTask } from "./TodosSlice";
 import { Card, Button, Tag, Space, Modal } from "antd";
 import { CheckOutlined, DeleteOutlined } from "@ant-design/icons";
 import { message } from "antd";
