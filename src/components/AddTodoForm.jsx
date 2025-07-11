@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { addTask } from '../features/todos/todosSlice'
+import { addTask } from '../features/todos/TodosSlice'
 import { Form, Input, Button, message } from 'antd'
 
 const { TextArea } = Input
