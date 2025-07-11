@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import "./App.css";
 import AddTodoForm from "./components/AddTodoForm";
 import FilterButtons from "./components/FilterButtons";
@@ -6,7 +7,12 @@ import TodoList from "./features/todos/TodoList";
 import TaskStats from "./components/TaskStats";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const tasks = useSelector((state) => state.todos.tasks);
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 p-4">
       <div className="max-w-2xl mx-auto">
@@ -23,4 +29,5 @@ function App() {
     </div>
   );
 }
+
 export default App;

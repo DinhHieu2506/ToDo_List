@@ -1,27 +1,26 @@
-import { createSlice, nanoid } from '@reduxjs/toolkit'
+import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const loadTasks = () => {
   try {
-    const data = localStorage.getItem('tasks')
-    return data ? JSON.parse(data) : []
+    const data = localStorage.getItem("tasks");
+    return data ? JSON.parse(data) : [];
   } catch {
-    return []
+    return [];
   }
-}
+};
 
 const initialState = {
   tasks: loadTasks(),
-  filter: 'all'
-}
+  filter: "all",
+};
 
 const TodosSlice = createSlice({
-  name: 'todos',
+  name: "todos",
   initialState,
   reducers: {
     addTask: {
       reducer(state, action) {
-        state.tasks.push(action.payload)
-        localStorage.setItem('tasks', JSON.stringify(state.tasks))
+        state.tasks.push(action.payload);
       },
       prepare({ title, description }) {
         return {
@@ -30,27 +29,27 @@ const TodosSlice = createSlice({
             title,
             description,
             completed: false,
-            createdAt: new Date().toISOString()
-          }
-        }
-      }
+            createdAt: new Date().toISOString(),
+          },
+        };
+      },
     },
     toggleTask(state, action) {
-      const task = state.tasks.find(t => t.id === action.payload)
+      if (!Array.isArray(state.tasks)) return;
+      const task = state.tasks.find((t) => t.id === action.payload);
       if (task) {
-        task.completed = !task.completed
-        localStorage.setItem('tasks', JSON.stringify(state.tasks))
+        task.completed = !task.completed;
       }
     },
     deleteTask(state, action) {
-      state.tasks = state.tasks.filter(t => t.id !== action.payload)
-      localStorage.setItem('tasks', JSON.stringify(state.tasks))
+      state.tasks = state.tasks.filter((t) => t.id !== action.payload);
     },
     setFilter(state, action) {
-      state.filter = action.payload
-    }
-  }
-})
+      state.filter = action.payload;
+    },
+  },
+});
 
-export const { addTask, toggleTask, deleteTask, setFilter } = TodosSlice.actions
-export default TodosSlice.reducer
+export const { addTask, toggleTask, deleteTask, setFilter } =
+  TodosSlice.actions;
+export default TodosSlice.reducer;
