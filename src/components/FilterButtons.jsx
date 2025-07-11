@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setFilter } from '../features/todos/TodosSlice.jsx'
+import { setFilter } from "../features/todos/TodosSlice.jsx"
 import { Segmented } from 'antd'
 
 const FilterButtons = () => {
