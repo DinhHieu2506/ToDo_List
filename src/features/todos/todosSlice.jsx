@@ -14,7 +14,7 @@ const initialState = {
   filter: 'all'
 }
 
-const todosSlice = createSlice({
+const TodosSlice = createSlice({
   name: 'todos',
   initialState,
   reducers: {
@@ -52,5 +52,5 @@ const todosSlice = createSlice({
   }
 })
 
-export const { addTask, toggleTask, deleteTask, setFilter } = todosSlice.actions
-export default todosSlice.reducer
+export const { addTask, toggleTask, deleteTask, setFilter } = TodosSlice.actions
+export default TodosSlice.reducer
