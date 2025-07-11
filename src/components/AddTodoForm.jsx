@@ -1,30 +1,29 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { addTask } from '../features/todos/TodosSlice.jsx'
-import { Form, Input, Button, message } from 'antd'
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTask } from "../features/todos/TodosSlice.jsx";
+import { Form, Input, Button, message } from "antd";
 
-const { TextArea } = Input
+const { TextArea } = Input;
 
 const AddTodoForm = () => {
-  const dispatch = useDispatch()
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
+  const dispatch = useDispatch();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
-const handleSubmit = () => {
-  const trimmedTitle = title.trim()
-  const trimmedDesc = description.trim()
+  const handleSubmit = () => {
+    const trimmedTitle = title.trim();
+    const trimmedDesc = description.trim();
 
-  if (!trimmedTitle) {
-    message.warning('Please enter a task title')
-    return
-  }
+    if (!trimmedTitle) {
+      message.warning("Please enter a task title");
+      return;
+    }
 
-  dispatch(addTask({ title: trimmedTitle, description: trimmedDesc }))
-  setTitle('')
-  setDescription('')
-  message.success('Task added successfully!')
-}
-
+    dispatch(addTask({ title: trimmedTitle, description: trimmedDesc }));
+    setTitle("");
+    setDescription("");
+    message.success("Task added successfully!");
+  };
 
   return (
     <div className="bg-white p-6 rounded-lg shadow mb-6">
@@ -33,7 +32,7 @@ const handleSubmit = () => {
         <Form.Item label="Task Title">
           <Input
             value={title}
-            onChange={e => setTitle(e.target.value)}
+            onChange={(e) => setTitle(e.target.value)}
             placeholder="Enter title..."
           />
         </Form.Item>
@@ -41,7 +40,7 @@ const handleSubmit = () => {
           <TextArea
             rows={3}
             value={description}
-            onChange={e => setDescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
             placeholder="Optional description..."
           />
         </Form.Item>
@@ -50,7 +49,7 @@ const handleSubmit = () => {
         </Button>
       </Form>
     </div>
-  )
-}
+  );
+};
 
-export default AddTodoForm
+export default AddTodoForm;
