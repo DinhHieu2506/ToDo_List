@@ -50,6 +50,5 @@ const TodosSlice = createSlice({
   },
 });
 
-export const { addTask, toggleTask, deleteTask, setFilter } =
-  TodosSlice.actions;
+export const { addTask, toggleTask, deleteTask, setFilter } =TodosSlice.actions;
 export default TodosSlice.reducer;
