@@ -1,19 +1,36 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { toggleTask, deleteTask } from "./TodosSlice";
-import { Card, Button, Tag, Space, Modal } from "antd";
+import { Card, Button, Tag, Space, Modal, message } from "antd";
 import { CheckOutlined, DeleteOutlined } from "@ant-design/icons";
-import { message } from "antd";
 
 const TodoItem = ({ task }) => {
   const dispatch = useDispatch();
+
+  
+  const checkTaskInLocal = () => {
+    const localTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    return localTasks.find((t) => t.id === task.id);
+  };
+
   const handleToggle = () => {
-    const nextStatus = !task.completed ? "completed" : "pending";
+    const foundTask = checkTaskInLocal();
+    if (!foundTask) {
+      message.error(`Task "${task.title}" not found.`);
+      return;
+    }
+    const nextStatus = !foundTask.completed ? "completed" : "pending";
     dispatch(toggleTask(task.id));
     message.success(`Task "${task.title}" marked as ${nextStatus}.`);
   };
 
   const handleDelete = () => {
+    const foundTask = checkTaskInLocal();
+    if (!foundTask) {
+      message.error(`Task "${task.title}" has been deleted.`);
+      return;
+    }
+
     Modal.confirm({
       title: "Do you want to delete this task?",
       content: `"${task.title}" will be permanently removed.`,
@@ -22,7 +39,7 @@ const TodoItem = ({ task }) => {
       cancelText: "Cancel",
       onOk() {
         dispatch(deleteTask(task.id));
-        message.warning(`Task "${task.title}" has been deleted.`);
+        message.success(`Task "${task.title}" deleted successfully.`);
       },
     });
   };
