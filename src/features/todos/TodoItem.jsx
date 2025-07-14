@@ -16,7 +16,7 @@ const TodoItem = ({ task }) => {
     const foundTask = checkTaskInLocal();
     if (!foundTask) {
       message.error(`Task "${task.title}" not found.`);
-
+      dispatch(deleteTask(task.id));
       return;
     }
     const nextStatus = !foundTask.completed ? "completed" : "pending";
@@ -27,8 +27,8 @@ const TodoItem = ({ task }) => {
   const handleDelete = () => {
     const foundTask = checkTaskInLocal();
     if (!foundTask) {
-      message.error(`Task "${task.title}" was already deleted.`);
-
+      message.error(`Task "${task.title}" not found.`);
+      dispatch(deleteTask(task.id));
       return;
     }
 
