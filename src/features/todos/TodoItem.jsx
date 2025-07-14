@@ -7,7 +7,6 @@ import { CheckOutlined, DeleteOutlined } from "@ant-design/icons";
 const TodoItem = ({ task }) => {
   const dispatch = useDispatch();
 
-  
   const checkTaskInLocal = () => {
     const localTasks = JSON.parse(localStorage.getItem("tasks")) || [];
     return localTasks.find((t) => t.id === task.id);
@@ -17,6 +16,7 @@ const TodoItem = ({ task }) => {
     const foundTask = checkTaskInLocal();
     if (!foundTask) {
       message.error(`Task "${task.title}" not found.`);
+
       return;
     }
     const nextStatus = !foundTask.completed ? "completed" : "pending";
@@ -27,7 +27,8 @@ const TodoItem = ({ task }) => {
   const handleDelete = () => {
     const foundTask = checkTaskInLocal();
     if (!foundTask) {
-      message.error(`Task "${task.title}" has been deleted.`);
+      message.error(`Task "${task.title}" was already deleted.`);
+
       return;
     }
 
